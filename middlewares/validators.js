@@ -16,7 +16,7 @@ module.exports.validateCreateUser = celebrate({
 });
 
 module.exports.validateGetUserId = celebrate({
-  params: Joi.object().keys({
+  body: Joi.object().keys({
     userId: Joi.string().length(24).hex().required(),
   }),
 });
@@ -24,17 +24,22 @@ module.exports.validateGetUserId = celebrate({
 module.exports.validatePatchUserId = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
+    email: Joi.string().required().email(),
   }),
 });
 
 module.exports.validateCreateMovie = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
-    link: Joi.string()
-      .required()
-      .regex(
-        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/,
-      ),
+    country: Joi.string().required(),
+    director: Joi.string().required(),
+    duration: Joi.string().required(),
+    year: Joi.string().required().min(2).max(4),
+    description: Joi.string().required(),
+    image: Joi.string().required(),
+    trailerLink: Joi.string().required(),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
+    thumbnail: Joi.string().required(),
   }),
 });
 

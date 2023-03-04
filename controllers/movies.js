@@ -74,4 +74,3 @@ module.exports.deleteMovie = (req, res, next) => {
       next(new InternalServerError500('На сервере произошла ошибка'));
     });
 };
-
