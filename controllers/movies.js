@@ -13,7 +13,7 @@ module.exports.getMovies = (req, res, next) => {
 };
 
 module.exports.createMovie = (req, res, next) => {
-  const { 
+  const {
     country,
     director,
     duration,
@@ -40,7 +40,7 @@ module.exports.createMovie = (req, res, next) => {
     .then((movie) => res.send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequest400('Неправильный запрос ' + err.message));
+        next(new BadRequest400('Неправильный запрос'));
         return;
       }
       next(new InternalServerError500('На сервере произошла ошибка'));
@@ -64,14 +64,14 @@ module.exports.deleteMovie = (req, res, next) => {
         });
         return;
       }
-      next(new Forbidden403('Попытка удалить чужую карточку'));
+      next(new Forbidden403('Попытка удалить чужой фильм'));
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequest400('Неправильный запрос' + err.message));
+        next(new BadRequest400('Неправильный запрос'));
         return;
       }
-      next(new InternalServerError500('На сервере произошла ошибка' + err.message));
+      next(new InternalServerError500('На сервере произошла ошибка'));
     });
 };
 

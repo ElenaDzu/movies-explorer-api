@@ -15,11 +15,11 @@ module.exports.validateCreateUser = celebrate({
   }),
 });
 
-// module.exports.validateGetUserId = celebrate({
-//   params: Joi.object().keys({
-//     userId: Joi.string().length(24).hex().required(),
-//   }),
-// });
+module.exports.validateGetUserId = celebrate({
+  params: Joi.object().keys({
+    userId: Joi.string().length(24).hex().required(),
+  }),
+});
 
 module.exports.validatePatchUserId = celebrate({
   body: Joi.object().keys({
@@ -27,19 +27,19 @@ module.exports.validatePatchUserId = celebrate({
   }),
 });
 
-// module.exports.validateCreateCards = celebrate({
-//   body: Joi.object().keys({
-//     name: Joi.string().required().min(2).max(30),
-//     link: Joi.string()
-//       .required()
-//       .regex(
-//         /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/,
-//       ),
-//   }),
-// });
+module.exports.validateCreateMovie = celebrate({
+  body: Joi.object().keys({
+    name: Joi.string().required().min(2).max(30),
+    link: Joi.string()
+      .required()
+      .regex(
+        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/,
+      ),
+  }),
+});
 
-// module.exports.validateDeleteCard = celebrate({
-//   params: Joi.object().keys({
-//     cardId: Joi.string().length(24).hex().required(),
-//   }),
-// });
+module.exports.validateDeleteMovie = celebrate({
+  params: Joi.object().keys({
+    movieId: Joi.string().length(24).hex().required(),
+  }),
+});

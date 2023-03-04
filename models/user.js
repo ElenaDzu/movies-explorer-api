@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-// const isEmail = require('validator/lib/isEmail');
+const isEmail = require('validator/lib/isEmail');
 
 const userSchema = new mongoose.Schema({
 
@@ -8,10 +8,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    // validate: {
-    //   // validator: (v) => isEmail(v),
-    //   message: 'Неправильный формат почты',
-    // },
+    validate: {
+      validator: (v) => isEmail(v),
+      message: 'Неправильный формат почты',
+    },
   },
   password: {
     type: String,
@@ -31,13 +31,13 @@ userSchema.statics.findUserByCredentials = function (email, password) {
     .select('+password')
     .then((user) => {
       if (!user) {
-        return Promise.reject(new Unauthorized401('Неверный логин, пароль, токен(стр 47)'));
+        return Promise.reject(new Unauthorized401('Неверный логин, пароль, токен(стр 34)'));
       }
 
       return bcrypt.compare(password, user.password)
         .then((matched) => {
           if (!matched) {
-            return Promise.reject(new Unauthorized401('Неверный логин, пароль, токен(стр 53)'));
+            return Promise.reject(new Unauthorized401('Неверный логин, пароль, токен(стр 40)'));
           }
 
           return user;

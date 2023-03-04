@@ -25,7 +25,7 @@ mongoose.connect(process.env.DB_HOST, {
   useNewUrlParser: true,
 });
 const corsOptions = {
-  origin: 'https://frontend15.nomoredomains.rocks',
+  origin: '',
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 app.use(cors(corsOptions));
@@ -38,7 +38,7 @@ app.use(errors());
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
-  const message = statusCode === 500 ? ('Ошибка сервера' + err.message) : err.message;
+  const message = statusCode === 500 ? ('Ошибка сервера') : err.message;
   res.status(statusCode).send({ message });
   next();
 });
