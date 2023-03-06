@@ -23,7 +23,9 @@ module.exports.createMovie = (req, res, next) => {
     trailerLink,
     nameRU,
     nameEN,
-    thumbnail} = req.body;
+    thumbnail,
+  } = req.body;
+
   Movie.create({
     country,
     director,
@@ -35,7 +37,7 @@ module.exports.createMovie = (req, res, next) => {
     nameRU,
     nameEN,
     thumbnail,
-    owner: req.user._id
+    owner: req.user._id,
   })
     .then((movie) => res.send(movie))
     .catch((err) => {
@@ -56,12 +58,12 @@ module.exports.deleteMovie = (req, res, next) => {
       }
       if (movie && movie.owner.toString() === req.user._id) {
         Movie.findByIdAndDelete(movie._id.toString())
-        .then((doc) => {
-          res.send(doc);
-        })
-        .catch((err) => {
-          res.send(err);
-        });
+          .then((doc) => {
+            res.send(doc);
+          })
+          .catch((err) => {
+            res.send(err);
+          });
         return;
       }
       next(new Forbidden403('Попытка удалить чужой фильм'));

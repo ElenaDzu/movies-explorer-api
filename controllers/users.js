@@ -5,7 +5,6 @@ const Conflict409 = require('../errors/Conflict409');
 const BadRequest400 = require('../errors/BadRequest400');
 const InternalServerError500 = require('../errors/InternalServerError500');
 const NotFound404 = require('../errors/NotFound404');
-const Unauthorized401 = require('../errors/Unauthorized401');
 
 module.exports.getUser = (req, res, next) => {
   User.findById(req.user._id)
@@ -67,6 +66,10 @@ module.exports.patchUserId = (req, res, next) => {
         next(new BadRequest400('Неправильный запрос'));
         return;
       }
+      if (err.code === 11000) {
+        next(new Conflict409('Введен существующий емайл'));
+        return;
+      }
       next(new InternalServerError500('На сервере произошла ошибка'));
     });
 };
@@ -81,7 +84,5 @@ module.exports.login = (req, res, next) => {
       });
       res.send({ token });
     })
-    .catch(() => {
-      next(new Unauthorized401('Неверный пароль, логин или токен'));
-    });
+    .catch(next);
 };

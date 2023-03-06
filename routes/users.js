@@ -1,15 +1,15 @@
 const router = require('express').Router();
 
-const { validatePatchUserId, validateGetUserId } = require('../middlewares/validators');
+const { validatePatchUserId } = require('../middlewares/validators');
 
 const {
   getUser,
   patchUserId,
 } = require('../controllers/users');
 
-router.get('/me',
-validateGetUserId,
-getUser,
+router.get(
+  '/me',
+  getUser,
 );
 
 router.patch(
@@ -17,6 +17,5 @@ router.patch(
   validatePatchUserId,
   patchUserId,
 );
-
 
 module.exports = router;

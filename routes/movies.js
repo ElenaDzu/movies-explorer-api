@@ -8,8 +8,9 @@ const {
   deleteMovie,
 } = require('../controllers/movies');
 
-router.get('/',
-getMovies,
+router.get(
+  '/',
+  getMovies,
 );
 
 router.post(
