@@ -1,2 +1,2 @@
 # movies-explorer-api: 
-http://api.elenadziuba.nomoredomains.work/
+https://api.elenadziuba.nomoredomains.work/
