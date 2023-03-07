@@ -25,7 +25,7 @@ module.exports.validatePatchUserId = celebrate({
 module.exports.validateCreateMovie = celebrate({
   body: Joi.object().keys({
     country: Joi.string().required(),
-    movieId: Joi.number(),
+    movieId: Joi.number().required(),
     duration: Joi.number().required(),
     director: Joi.string().required(),
     year: Joi.string().required(),
@@ -40,6 +40,6 @@ module.exports.validateCreateMovie = celebrate({
 
 module.exports.validateDeleteMovie = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().length(24).hex().required(),
+    id: Joi.string().length(24).hex().required(),
   }),
 });

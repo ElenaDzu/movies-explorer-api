@@ -5,7 +5,9 @@ const NotFound404 = require('../errors/NotFound404');
 const Forbidden403 = require('../errors/Forbidden403');
 
 module.exports.getMovies = (req, res, next) => {
-  Movie.find({})
+  Movie.find({
+    owner: req.user._id,
+  })
     .then((movies) => res.send(movies))
     .catch(() => {
       next(new InternalServerError500('На сервере произошла ошибка'));
@@ -24,6 +26,7 @@ module.exports.createMovie = (req, res, next) => {
     nameRU,
     nameEN,
     thumbnail,
+    movieId,
   } = req.body;
 
   Movie.create({
@@ -38,11 +41,12 @@ module.exports.createMovie = (req, res, next) => {
     nameEN,
     thumbnail,
     owner: req.user._id,
+    movieId,
   })
     .then((movie) => res.send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequest400('Неправильный запрос'));
+        next(new BadRequest400('Неправильный запрос' + err.message));
         return;
       }
       next(new InternalServerError500('На сервере произошла ошибка'));
@@ -50,7 +54,7 @@ module.exports.createMovie = (req, res, next) => {
 };
 
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findById(req.params.movieId)
+  Movie.findById(req.params.id)
     .then((movie) => {
       if (!movie) {
         next(new NotFound404('Объект не найден'));

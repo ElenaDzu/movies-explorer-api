@@ -20,7 +20,7 @@ router.post(
 );
 
 router.delete(
-  '/:movieId',
+  '/:id',
   validateDeleteMovie,
   deleteMovie,
 );

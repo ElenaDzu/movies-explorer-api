@@ -52,11 +52,7 @@ const movieSchema = new mongoose.Schema({
   },
   movieId: {
     type: Number,
-    required: false,
-    validate: {
-      validator: (v) => isInt(v),
-      message: 'Неправильный формат',
-    },
+    required: true,
   },
   nameRU: {
     type: String,
