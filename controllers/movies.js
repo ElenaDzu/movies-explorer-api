@@ -46,7 +46,7 @@ module.exports.createMovie = (req, res, next) => {
     .then((movie) => res.send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequest400('Неправильный запрос' + err.message));
+        next(new BadRequest400('Неправильный запрос'));
         return;
       }
       next(new InternalServerError500('На сервере произошла ошибка'));
