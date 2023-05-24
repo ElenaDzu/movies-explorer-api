@@ -6,7 +6,7 @@ const LIMITER_OPTIONS = {
 };
 
 const CORS_OPTIONS = {
-  origin: '',
+  origin: '*',
   optionsSuccessStatus: 200,
 };
 

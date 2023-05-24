@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -14,8 +15,6 @@ const {
   LIMITER_OPTIONS,
   CORS_OPTIONS,
 } = require('./const');
-
-require('dotenv').config();
 
 const app = express();
 
