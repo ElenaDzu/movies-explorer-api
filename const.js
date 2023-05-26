@@ -6,8 +6,7 @@ const LIMITER_OPTIONS = {
 };
 
 const CORS_OPTIONS = {
-  // origin: /elenadziuba\.nomoredomains\.work$/,
-  origin: '*',
+  origin: /elenadziuba\.nomoredomains\.work$/,
   optionsSuccessStatus: 200,
 };
 
